@@ -55,6 +55,11 @@ function calcula() {
         document.getElementById('resultat').value = 'Error';
     }
 }
+
+function calculaPercentatge() {
+    let valor = document.getElementById('resultat').value;
+    document.getElementById('resultat').value = valor / 100;
+}
     </script>
 </body>
 </html>
