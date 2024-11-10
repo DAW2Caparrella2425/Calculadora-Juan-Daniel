@@ -47,6 +47,14 @@
         function afegeixALaSortida(valor) {
     document.getElementById('resultat').value += valor;
 }
+function calcula() {
+    try {
+        let resultat = document.getElementById('resultat').value;
+        document.getElementById('resultat').value = eval(resultat);
+    } catch (error) {
+        document.getElementById('resultat').value = 'Error';
+    }
+}
     </script>
 </body>
 </html>
