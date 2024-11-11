@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,36 +43,56 @@
             <button onclick="netejaSortida()">C</button>
         </div>
     </div>
+        <div class="historial">
+            <h3>Historial d'operacions:</h3>
+            <ul id="historialOperacions"></ul>
+        </div>
     <script>
+        let historial = [];
+
         function afegeixALaSortida(valor) {
-    document.getElementById('resultat').value += valor;
-}
-function netejaSortida() {
-    document.getElementById('resultat').value = '';
-}
-function calcula() {
-    try {
-        let resultat = document.getElementById('resultat').value;
-        document.getElementById('resultat').value = eval(resultat);
-    } catch (error) {
-        document.getElementById('resultat').value = 'Error';
-    }
-}
+            document.getElementById('resultat').value += valor;
+        }
 
-function calculaPercentatge() {
-    let valor = document.getElementById('resultat').value;
-    document.getElementById('resultat').value = valor / 100;
-}
+        function netejaSortida() {
+            document.getElementById('resultat').value = '';
+        }
 
-function calculaArrelQuadrada() {
-    let valor = document.getElementById('resultat').value;
-    if (valor < 0) {
-        document.getElementById('resultat').value = 'Error';
-    } else {
-        document.getElementById('resultat').value = Math.sqrt(valor);
-    }
-}
+        function calcula() {
+            try {
+                let resultat = document.getElementById('resultat').value;
+                let resultado = eval(resultat);
+                document.getElementById('resultat').value = resultado;
+                historial.push(`${resultat} = ${resultado}`);
+                mostrarHistorial();
+            } catch (error) {
+                document.getElementById('resultat').value = 'Error';
+            }
+        }
 
+        function calculaPercentatge() {
+            let valor = document.getElementById('resultat').value;
+            document.getElementById('resultat').value = valor / 100;
+        }
+
+        function calculaArrelQuadrada() {
+            let valor = document.getElementById('resultat').value;
+            if (valor < 0) {
+                document.getElementById('resultat').value = 'Error';
+            } else {
+                document.getElementById('resultat').value = Math.sqrt(valor);
+            }
+        }
+
+        function mostrarHistorial() {
+            let historialDiv = document.getElementById('historialOperacions');
+            historialDiv.innerHTML = '';
+            historial.forEach(operacion => {
+                let li = document.createElement('li');
+                li.textContent = operacion;
+                historialDiv.appendChild(li);
+            });
+        }
     </script>
 </body>
 </html>
